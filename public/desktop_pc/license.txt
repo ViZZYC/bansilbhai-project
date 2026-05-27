@@ -1,0 +1,11 @@
+Model Information:
+* title:	Desktop PC
+* source:	https://sketchfab.com/3d-models/desktop-pc-c12077df4ea2414e92f0f7a4e464903a
+* author:	AFX/CGMotion 3DModel Maker (https://sketchfab.com/afx_cgmotion)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Desktop PC" (https://sketchfab.com/3d-models/desktop-pc-c12077df4ea2414e92f0f7a4e464903a) by AFX/CGMotion 3DModel Maker (https://sketchfab.com/afx_cgmotion) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
