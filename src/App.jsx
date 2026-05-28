@@ -596,7 +596,7 @@ function Tech() {
             ))}
           </div>
         </div>
-        <div className="reveal reveal--right" style={{ flex: 1, minHeight: '500px' }}>
+       <div className="reveal reveal--right" style={{ flex: 1, minHeight: '500px', width: '100%' }}>
           <TechBallsCanvas techs={techs} />
         </div>
       </div>
