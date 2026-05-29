@@ -6,7 +6,7 @@ import {
   FaPython, FaJava, FaRobot, FaBrain, FaBolt,
   FaGithub, FaLinkedin, FaExternalLinkAlt,
   FaProjectDiagram, FaChartBar, FaChartLine, FaLink,
-  FaMicrosoft, FaHandPaper, FaArrowRight
+  FaMicrosoft, FaHandPaper, FaArrowRight, FaDownload
 } from "react-icons/fa";
 import {
   SiNumpy, SiPandas, SiScikitlearn, SiFastapi,
@@ -31,13 +31,11 @@ function useScrollReveal() {
       { threshold: 0.08, rootMargin: "0px 0px -40px 0px" }
     );
 
-    // re-observe when new elements appear
     const observe = () => {
       document.querySelectorAll(".reveal:not(.visible)").forEach((el) => observer.observe(el));
     };
     observe();
 
-    // MutationObserver to catch dynamic content
     const mutObs = new MutationObserver(observe);
     mutObs.observe(document.body, { childList: true, subtree: true });
 
@@ -117,8 +115,6 @@ function TechBallsCanvas({ techs }) {
       scene.add(mesh);
     });
 
-    // No extra orbit ring here
-
     let frameId;
     const clock = new THREE.Clock();
     const vector = new THREE.Vector3();
@@ -143,8 +139,6 @@ function TechBallsCanvas({ techs }) {
           iconsRef.current[i].style.opacity = opacity;
         }
       });
-      
-      // Removed orbitRing rotation
 
       renderer.render(scene, camera);
     };
@@ -341,6 +335,68 @@ function GridBackground() {
   );
 }
 
+// ─── WHATSAPP FLOAT ───────────────────────────────────────────────────────────
+function WhatsAppFloat() {
+  const [showMsg, setShowMsg] = useState(false);
+  const [dismissed, setDismissed] = useState(false);
+  const timerRef = useRef(null);
+
+  const handleClick = () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+
+    if (!dismissed) {
+      timerRef.current = setTimeout(() => {
+        setShowMsg(true);
+      }, 5000);
+    }
+
+    // ✅ Replace with your actual WhatsApp number (country code + number, no + or spaces)
+    window.open(
+      "https://wa.me/8160309700?text=Hi%20Bansil!%20Let%27s%20connect.",
+      "_blank"
+    );
+  };
+
+  const handleDismiss = (e) => {
+    e.stopPropagation();
+    setShowMsg(false);
+    setDismissed(true);
+    if (timerRef.current) clearTimeout(timerRef.current);
+  };
+
+  useEffect(() => {
+    if (showMsg) {
+      const t = setTimeout(() => setShowMsg(false), 6000);
+      return () => clearTimeout(t);
+    }
+  }, [showMsg]);
+
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, []);
+
+  return (
+    <div className="wa-float">
+      {showMsg && (
+        <div className="wa-float__msg">
+          <span>Let's connect 💬</span>
+          <button className="wa-float__close" onClick={handleDismiss} aria-label="Close">✕</button>
+        </div>
+      )}
+      <button className="wa-float__btn" onClick={handleClick} aria-label="Chat on WhatsApp">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" width="28" height="28">
+          <path fillRule="evenodd" clipRule="evenodd"
+            d="M16 2C8.268 2 2 8.268 2 16c0 2.442.654 4.733 1.797 6.707L2 30l7.517-1.773A13.94 13.94 0 0016 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm-3.47 7.574c-.29-.654-.6-.667-.878-.679-.228-.01-.489-.01-.75-.01-.26 0-.684.098-1.042.489-.357.391-1.368 1.337-1.368 3.26s1.4 3.78 1.595 4.042c.196.26 2.734 4.33 6.7 5.904 3.313 1.307 3.967.99 4.682.845.716-.146 2.31-.945 2.636-1.858.326-.912.326-1.695.228-1.858-.098-.163-.358-.26-.75-.456-.391-.196-2.31-1.14-2.669-1.27-.358-.13-.619-.196-.879.196-.26.391-1.008 1.27-1.237 1.53-.228.26-.456.293-.847.098-.392-.196-1.652-.609-3.148-1.94-1.163-1.037-1.949-2.317-2.177-2.71-.228-.39-.024-.602.172-.797.176-.175.391-.456.587-.685.196-.228.26-.39.39-.65.13-.26.065-.489-.033-.685-.098-.196-.856-2.13-1.21-2.912z"
+            fill="#fff"/>
+        </svg>
+        <span className="wa-float__ring" />
+      </button>
+    </div>
+  );
+}
+
 // ─── DATA ────────────────────────────────────────────────────────────────────
 const techs = [
   { name: "Python",       icon: <FaPython color="#3776AB" /> },
@@ -451,6 +507,17 @@ function Navbar() {
             <a key={l} href={`#${l}`} className="navbar__link">{l}</a>
           ))}
         </div>
+
+        {/* ✅ Download CV Button */}
+        <a
+          href="/KHOKHAR_BANSIL.pdf"
+          download
+          className="navbar__cv-btn"
+        >
+          <FaDownload size={11} />
+          Download CV
+        </a>
+
         <button className="hamburger" onClick={() => setOpen(!open)} aria-label="Menu">
           <span className={`ham-bar ${open ? "open" : ""}`} />
           <span className={`ham-bar ${open ? "open" : ""}`} />
@@ -462,6 +529,15 @@ function Navbar() {
           {links.map(l => (
             <a key={l} href={`#${l}`} className="mobile-link" onClick={() => setOpen(false)}>{l}</a>
           ))}
+          {/* CV button in mobile menu too */}
+          <a
+            href="/KHOKHAR_BANSIL.pdf"
+            download
+            className="mobile-cv-btn"
+            onClick={() => setOpen(false)}
+          >
+            <FaDownload size={11} /> Download CV
+          </a>
         </div>
       )}
     </nav>
@@ -477,7 +553,6 @@ function Hero() {
 
   return (
     <section className="hero" id="hero">
-      {/* Gradient mesh background */}
       <div className="hero__mesh">
         <div className="hero__mesh-blob hero__mesh-blob--1" />
         <div className="hero__mesh-blob hero__mesh-blob--2" />
@@ -485,11 +560,9 @@ function Hero() {
         <div className="hero__mesh-blob hero__mesh-blob--4" />
       </div>
 
-      {/* Grid pattern overlay */}
       <div className="hero__grid-pattern" />
 
       <div className="hero__content-wrap">
-        {/* Text block */}
         <div className="hero__text">
           <div className="hero__badge">
             <span className="hero__badge-dot" />
@@ -520,7 +593,6 @@ function Hero() {
           </div>
         </div>
 
-        {/* Visual block */}
         <div className="hero__visual">
           <div className="hero__video-container">
             <div className="hero__video-glow" />
@@ -533,7 +605,6 @@ function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <a href="#about" className="hero__scroll">
         <div className="hero__scroll-track">
           <div className="hero__scroll-thumb" />
@@ -762,7 +833,6 @@ function Footer() {
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__top">
-          {/* Brand */}
           <div className="footer__brand reveal reveal--up">
             <div className="footer__brand-logo">
               <div className="footer__brand-icon">B</div>
@@ -774,7 +844,6 @@ function Footer() {
             </p>
           </div>
 
-          {/* Connect */}
           <div className="reveal reveal--up reveal--d1">
             <p className="footer__col-label">Connect</p>
             <div className="footer__social-links">
@@ -787,7 +856,6 @@ function Footer() {
             </div>
           </div>
 
-          {/* Navigate */}
           <div className="reveal reveal--up reveal--d2">
             <p className="footer__col-label">Navigate</p>
             <div className="footer__nav-links">
@@ -798,10 +866,8 @@ function Footer() {
           </div>
         </div>
 
-        {/* Divider */}
         <div className="footer__divider reveal reveal--fade reveal--d3" />
 
-        {/* Bottom bar */}
         <div className="footer__bottom reveal reveal--fade reveal--d4">
           <p className="footer__copyright">© 2026 Bansil. Engineering the Future with AI</p>
           <a href="#hero" className="footer__back-top">Back to top ↑</a>
@@ -831,6 +897,8 @@ export default function App() {
       <SectionDivider />
       <Contact />
       <Footer />
+      {/* ✅ Floating WhatsApp Button */}
+      <WhatsAppFloat />
     </div>
   );
 }
