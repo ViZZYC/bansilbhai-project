@@ -377,7 +377,6 @@ img { max-width: 100%; height: auto; }
   padding-left: 1.5rem;
 }
 
-/* Mobile CV button inside hamburger menu */
 .mobile-cv-btn {
   display: inline-flex;
   align-items: center;
@@ -907,6 +906,9 @@ img { max-width: 100%; height: auto; }
   gap: 1rem;
 }
 
+/* ══════════════════════════════════════════════════════════════════════════
+   BENTO CARD — top line REMOVED
+   ══════════════════════════════════════════════════════════════════════════ */
 .bento-card {
   background: var(--glass-bg);
   border: 1px solid var(--glass-border);
@@ -916,15 +918,6 @@ img { max-width: 100%; height: auto; }
   position: relative;
   overflow: hidden;
   cursor: default;
-}
-
-.bento-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 3px;
-  opacity: 0;
-  transition: opacity var(--t-normal);
 }
 
 .bento-card::after {
@@ -944,18 +937,14 @@ img { max-width: 100%; height: auto; }
   box-shadow: 0 16px 48px rgba(0,0,0,0.35);
 }
 
-.bento-card:hover::before { opacity: 1; }
 .bento-card:hover::after { opacity: 1; }
 
-.bento-card--cyan::before { background: linear-gradient(90deg, var(--cyan), transparent); }
 .bento-card--cyan::after { background: radial-gradient(ellipse at top left, rgba(0, 229, 255, 0.05), transparent 60%); }
 .bento-card--cyan:hover { border-color: rgba(0, 229, 255, 0.15); }
 
-.bento-card--purple::before { background: linear-gradient(90deg, var(--purple), transparent); }
 .bento-card--purple::after { background: radial-gradient(ellipse at top left, rgba(168, 85, 247, 0.05), transparent 60%); }
 .bento-card--purple:hover { border-color: rgba(168, 85, 247, 0.15); }
 
-.bento-card--pink::before { background: linear-gradient(90deg, var(--pink), transparent); }
 .bento-card--pink::after { background: radial-gradient(ellipse at top left, rgba(244, 114, 182, 0.05), transparent 60%); }
 .bento-card--pink:hover { border-color: rgba(244, 114, 182, 0.15); }
 
@@ -1082,7 +1071,7 @@ img { max-width: 100%; height: auto; }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
-   EXPERIENCE / TIMELINE
+   EXPERIENCE / TIMELINE — top line REMOVED
    ══════════════════════════════════════════════════════════════════════════ */
 .timeline {
   position: relative;
@@ -1108,7 +1097,7 @@ img { max-width: 100%; height: auto; }
 .timeline__node {
   position: absolute;
   left: -3.8rem;
-   top: 0.3rem;
+  top: 0.3rem;
   width: 2.6rem; height: 2.6rem;
   border-radius: 50%;
   display: flex;
@@ -1132,16 +1121,7 @@ img { max-width: 100%; height: auto; }
   overflow: hidden;
 }
 
-.timeline__card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 3px;
-  background: var(--gradient-main);
-  opacity: 0;
-  transition: opacity var(--t-normal);
-}
-
+/* ✅ ::before completely removed — no top line at all */
 .timeline__card::after {
   content: '';
   position: absolute;
@@ -1158,7 +1138,6 @@ img { max-width: 100%; height: auto; }
   transform: translateX(6px);
 }
 
-.timeline__card:hover::before { opacity: 1; }
 .timeline__card:hover::after { opacity: 1; }
 
 .timeline__role {
@@ -1759,9 +1738,8 @@ img { max-width: 100%; height: auto; }
   .hero__visual { width: 75%; max-width: 320px; }
 
   .about__bento { grid-template-columns: 1fr; }
-/* REPLACE karo */
-.timeline { padding-left: 3.5rem; }
-.timeline__node { left: -3rem; width: 1.8rem; height: 1.8rem; }
+  .timeline { padding-left: 3.5rem; }
+  .timeline__node { left: -3rem; width: 1.8rem; height: 1.8rem; }
   .timeline__card { padding: 1.5rem; }
 
   .projects__grid { grid-template-columns: 1fr; }
@@ -1792,9 +1770,8 @@ img { max-width: 100%; height: auto; }
 
   .techballs-canvas { min-height: 300px !important; }
 
-  /* REPLACE karo */
-.timeline { padding-left: 2.5rem; }
-.timeline__node { left: -2.2rem; }
+  .timeline { padding-left: 2.5rem; }
+  .timeline__node { left: -2.2rem; }
   .timeline__card { padding: 1.2rem; }
   .timeline__role { font-size: 1rem; }
   .timeline__points li { font-size: 0.82rem; }
@@ -1830,7 +1807,7 @@ img { max-width: 100%; height: auto; }
 
   .timeline { padding-left: 1.5rem; }
   .timeline__line { left: 0.7rem; }
-.timeline__node { left: -1.5rem; }
+  .timeline__node { left: -1.5rem; }
 
   .tech-pill { font-size: 0.72rem; padding: 6px 12px; }
 
@@ -1924,7 +1901,6 @@ img { max-width: 100%; height: auto; }
 
 .wa-float__btn:active { transform: scale(0.95); }
 
-/* Ripple ring animation */
 .wa-float__ring {
   position: absolute;
   inset: -5px;
@@ -1944,7 +1920,6 @@ img { max-width: 100%; height: auto; }
   to   { opacity: 1; transform: scale(1)   translateY(0); }
 }
 
-/* Message bubble */
 .wa-float__msg {
   display: flex;
   align-items: center;
